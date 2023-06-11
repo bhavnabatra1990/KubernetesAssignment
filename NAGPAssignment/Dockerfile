@@ -14,10 +14,10 @@ COPY ["NAGPAssignment.csproj", "NAGPAssignment/"]
 RUN dotnet restore "NAGPAssignment/NAGPAssignment.csproj"
 COPY . .
 WORKDIR "/src/NAGPAssignment"
-RUN dotnet build "NAGPAssignment.csproj" -c Release -o /app/build
+RUN dotnet build "NAGPAssignment/NAGPAssignment.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "NAGPAssignment.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "NAGPAssignment/NAGPAssignment.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
