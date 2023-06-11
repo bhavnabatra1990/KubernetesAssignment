@@ -11,9 +11,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["NAGPAssignment.csproj", "NAGPAssignment/"]
-RUN dotnet restore "NAGPAssignment.csproj"
+RUN dotnet restore "NAGPAssignment/NAGPAssignment.csproj"
 COPY . .
-WORKDIR "/src"
+WORKDIR "/src/NAGPAssignment"
 RUN dotnet build "NAGPAssignment.csproj" -c Release -o /app/build
 
 FROM build AS publish
