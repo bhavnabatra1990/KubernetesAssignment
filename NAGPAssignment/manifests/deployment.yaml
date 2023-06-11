@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-webapi-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-webapi
+  template:
+    metadata:
+      labels:
+        app: my-webapi
+    spec:
+      containers:
+        - name: my-webapi-container
+          image: YOUR_DOCKER_IMAGE_NAME:TAG
+          ports:
+            - containerPort: 80
