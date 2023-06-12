@@ -11,7 +11,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["NAGPAssignment/NAGPAssignment.csproj", "NAGPAssignment/"]
-COPY ["DatabaseService/DatabaseService.csproj", "DatabaseService/"]
+COPY ["DatabaseService/DatabaseService.csproj", "NAGPAssignment/"]
 RUN dotnet restore "NAGPAssignment/NAGPAssignment.csproj"
 COPY . .
 WORKDIR "/src/NAGPAssignment"
