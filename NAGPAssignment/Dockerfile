@@ -8,18 +8,17 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
-COPY ["NAGPAssignment.csproj", "NAGPAssignment/"]
-RUN dotnet restore "NAGPAssignment/NAGPAssignment.csproj"
-COPY . .
-WORKDIR "/src/NAGPAssignment"
-RUN dotnet build "NAGPAssignment/NAGPAssignment.csproj" -c Release -o /app/build
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
 
-FROM build AS publish
-RUN dotnet publish "NAGPAssignment/NAGPAssignment.csproj" -c Release -o /app/publish /p:UseAppHost=false
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
 
-FROM base AS final
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "NAGPAssignment.dll"]
+RUN apk --no-cache add curl
+COPY --from=build-env /app/out .
+ENTRYPOINT ["dotnet", "dotnet-core-web-api.dll"]
