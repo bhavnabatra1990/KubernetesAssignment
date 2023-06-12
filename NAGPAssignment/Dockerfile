@@ -8,17 +8,19 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["NAGPAssignment/NAGPAssignment.csproj", "NAGPAssignment/"]
+COPY ["DatabaseService/DatabaseService.csproj", "DatabaseService/"]
+RUN dotnet restore "NAGPAssignment/NAGPAssignment.csproj"
+COPY . .
+WORKDIR "/src/NAGPAssignment"
+RUN dotnet build "NAGPAssignment.csproj" -c Release -o /app/build
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+FROM build AS publish
+RUN dotnet publish "NAGPAssignment.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+FROM base AS final
 WORKDIR /app
-RUN apk --no-cache add curl
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "dotnet-core-web-api.dll"]
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "NAGPAssignment.dll"]
