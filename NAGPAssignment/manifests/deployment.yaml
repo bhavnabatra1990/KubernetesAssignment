@@ -34,19 +34,19 @@ spec:
             cpu: 250m
             memory: 125Mi
           env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Development
-        - name: SA_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: appsettings
-              key: password
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+            - name: SA_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                name: appsettings
+                key: password
           volumeMounts:
-        - name: appvolume
-          mountPath: "/app/appsettings.json"
-          subPath: "appsettings.json"
-        imagePullPolicy: Always
-      volumes:
-        - name: appvolume
-          configMap:
-            name: appsettings
+            - name: appvolume
+              mountPath: "/app/appsettings.json"
+              subPath: "appsettings.json"
+              imagePullPolicy: Always
+          volumes:
+            - name: appvolume
+              configMap:
+              name: appsettings
