@@ -19,11 +19,13 @@ builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
     .WithOrigins("http://localhost:4200");
 }));
 var configuration = builder.Configuration;
+configuration.AddEnvironmentVariables();
 builder.Services.AddDbContext<EmployeeDbContext>(options => 
 options.UseSqlServer(configuration.GetConnectionString("EmployeeDbConnection")));
 
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

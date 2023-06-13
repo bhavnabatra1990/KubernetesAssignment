@@ -1,16 +1,14 @@
+# Create the load balancing service
 apiVersion: v1
 kind: Service
 metadata:
-  name: employeeapp-service
+  name: mssql-service
   namespace: applicationnamespace
-   labels:
-    app: EmployeeApp
 spec:
   selector:
-    app: EmployeeApp
+    app: mssql
   ports:
     - protocol: TCP
-      name: http
-      port: 80
-      targetPort: 80
+      port: 1433
+      targetPort: 1433
   type: LoadBalancer

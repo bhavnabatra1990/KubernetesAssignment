@@ -1,19 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-webapi-deployment
+  name: employeeapp-deployment
+  namespace: applicationnamespace
+  labels:
+    app: EmployeeApp
 spec:
-  replicas: 3
+  replicas: 4
+   strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
   selector:
     matchLabels:
-      app: my-webapi
+      app: EmployeeApp
   template:
     metadata:
       labels:
-        app: my-webapi
+        app: EmployeeApp
     spec:
       containers:
-        - name: my-webapi-container
+        - name: employeeapp
           image: docker.io/bhavnabatra1990/employee:1
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
+              protocol: TCP
+          resources:
+          limits:
+            cpu: 500m
+            memory: 250Mi
+          requests:
+            cpu: 250m
+            memory: 125Mi
+          env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: SA_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: appsettings
+              key: password
+          volumeMounts:
+        - name: appvolume
+          mountPath: "/app/appsettings.json"
+          subPath: "appsettings.json"
+        imagePullPolicy: Always
+      volumes:
+        - name: appvolume
+          configMap:
+            name: appsettings
