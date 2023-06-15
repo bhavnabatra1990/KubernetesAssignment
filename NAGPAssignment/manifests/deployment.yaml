@@ -8,9 +8,9 @@ metadata:
 spec:
   replicas: 4
    strategy:
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 2
+  rollingUpdate:
+    maxUnavailable: 0
+    maxSurge: 2
   selector:
     matchLabels:
       app: EmployeeApp
@@ -18,8 +18,7 @@ spec:
     metadata:
       labels:
         app: EmployeeApp
-    spec:
-      containers:
+  containers:
         - name: employeeapp
           image: docker.io/bhavnabatra1990/employee:1
           imagePullPolicy: Always

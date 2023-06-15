@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: employeeapp-service
   namespace: applicationnamespace
-   labels:
-    app: EmployeeApp
 spec:
   selector:
     app: EmployeeApp
