@@ -5,7 +5,7 @@ metadata:
   namespace: applicationnamespace
   annotations:
     dev.okteto.com/auto-ingress: "true"
-    service.beta.kubernetes.io/load-balancer-source-ranges: "34.171.29.207/80"
+    service.beta.kubernetes.io/load-balancer-source-ranges: "34.171.0.0/80"
 spec:
   type: ExternalName
   externalName: employeeservice.com
