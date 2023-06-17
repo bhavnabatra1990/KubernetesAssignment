@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: my-ingress
   namespace: applicationnamespace
-  kubernetes.io/ingress.global-static-ip-name: ingress-ip
 spec:
   rules:
     - host: employeeservice.com
