@@ -6,10 +6,9 @@ FILES=(
   "manifests/secret.yaml"
   "manifests/configmap.yaml"
   "manifests/storageclass.yaml"
-  "manifests/databasedeployment.yaml"
-  "manifests/db-server.yaml"
   "manifests/networking.yaml"
   "manifests/deployment.yaml"
+  "manifests/db-server.yaml"
   "manifests/service.yaml"
 )
 
