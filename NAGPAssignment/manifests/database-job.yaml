@@ -1,4 +1,4 @@
-﻿apiVersion: v1
+apiVersion: v1
 kind: Job
 metadata:
   name: database-scripts-job
@@ -37,4 +37,5 @@ spec:
                 name: appsettings
                 key: database
       restartPolicy: Never
+
 
