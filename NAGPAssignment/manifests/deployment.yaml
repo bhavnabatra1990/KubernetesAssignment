@@ -6,11 +6,11 @@ metadata:
   labels:
     app: EmployeeApp
 spec:
-  replicas: 4
-   strategy:
-  rollingUpdate:
-    maxUnavailable: 0
-    maxSurge: 2
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
   selector:
     matchLabels:
       app: EmployeeApp
@@ -18,34 +18,35 @@ spec:
     metadata:
       labels:
         app: EmployeeApp
-  containers:
-        - name: employeeapp
-          image: docker.io/bhavnabatra1990/employee:1
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources:
+    spec:
+      containers:
+      - name: employeeapp
+        image: docker.io/bhavnabatra1990/employee:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
           limits:
             cpu: 500m
             memory: 250Mi
           requests:
             cpu: 250m
             memory: 125Mi
-          env:
-            - name: ASPNETCORE_ENVIRONMENT
-              value: Development
-            - name: SA_PASSWORD
-              valueFrom:
-                configMapKeyRef:
-                name: appsettings
-                key: password
-          volumeMounts:
-            - name: appvolume
-              mountPath: "/app/appsettings.json"
-              subPath: "appsettings.json"
-              imagePullPolicy: Always
-          volumes:
-            - name: appvolume
-              configMap:
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: SA_PASSWORD
+          valueFrom:
+            configMapKeyRef:
               name: appsettings
+              key: password
+        volumeMounts:
+        - name: appvolume
+          mountPath: "/app/appsettings.json"
+          subPath: "appsettings.json"
+          imagePullPolicy: Always
+        volumes:
+        - name: appvolume
+          configMap:
+            name: appsettings
