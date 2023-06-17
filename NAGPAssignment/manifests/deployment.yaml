@@ -38,10 +38,23 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
-        - name: SQL_PID
-          value: "Developer"
+        - name: SA_USER
+          valueFrom:
+            configMapKeyRef:
+             name: appsettings
+             key: username
         - name: ACCEPT_EULA
           value: "Y"
+        - name: SA_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: appsettings
+              key: database
+        - name: SA_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: appsettings
+              key: host
         - name: SA_PASSWORD
           valueFrom:
             secretKeyRef:

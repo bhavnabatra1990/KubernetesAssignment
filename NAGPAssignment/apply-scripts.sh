@@ -10,6 +10,7 @@ FILES=(
   "manifests/deployment.yaml"
   "manifests/db-server.yaml"
   "manifests/service.yaml"
+  "manifests/databasejob.yaml"
 )
 
 # Iterate over the files and apply them
