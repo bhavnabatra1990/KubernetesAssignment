@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
+  namespace: applicationnamespace
 spec:
   rules:
     - host: employeeservice.com
@@ -11,6 +12,6 @@ spec:
             path: /
             backend:
               service:
-                name: EmployeeApp
+                name: employeeapp-service
                 port:
                   number: 80
