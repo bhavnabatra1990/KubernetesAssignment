@@ -3,7 +3,6 @@
 # List the manifest files in the desired order1
 FILES=(
   "manifests/namespace.yaml"
-  "manifests/secret.yaml"
   "manifests/configmap.yaml"
   "manifests/storageclass.yaml"
   "manifests/networking.yaml"
