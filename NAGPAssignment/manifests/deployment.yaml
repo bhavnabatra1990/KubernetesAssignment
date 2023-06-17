@@ -35,9 +35,6 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
-        volumeMounts:
-        - name: mssql-data
-          mountPath: /var/opt/mssql
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
@@ -61,7 +58,3 @@ spec:
             configMapKeyRef:
               name: appsettings
               key: host
-      volumes:
-      - name: mssql-data
-        persistentVolumeClaim:
-          claimName: mssql-data  
