@@ -33,8 +33,6 @@ spec:
           requests:
             cpu: 250m
             memory: 125Mi
-      - name: mssql
-        image: mcr.microsoft.com/mssql/rhel/server:2019-latest
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
