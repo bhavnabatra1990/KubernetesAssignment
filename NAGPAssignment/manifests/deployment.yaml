@@ -6,7 +6,7 @@ metadata:
   labels:
     app: EmployeeApp
 spec:
-  replicas: 2
+  replicas: 4
   strategy:
     rollingUpdate:
       maxUnavailable: 0

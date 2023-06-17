@@ -8,6 +8,7 @@ spec:
   template:
     metadata:
       name: database-scripts-pod
+      namespace: applicationnamespace
       labels:
         app: database-scripts
     spec:
