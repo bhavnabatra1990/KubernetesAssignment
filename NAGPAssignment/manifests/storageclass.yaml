@@ -1,24 +1,41 @@
-kind: StorageClass
 apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
-  name: azure-disk
+  name: standard
   namespace: applicationnamespace
-provisioner: kubernetes.io/azure-disk
+provisioner: kubernetes.io/gce-pd
 parameters:
-  storageaccounttype: Standard_LRS
-  kind: Managed
-  type: azure-disk
+  type: pd-standard
+
 ---
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: mssql-data-db
+  name: sqldb-pv
   namespace: applicationnamespace
-  annotations:
-    volume.beta.kubernetes.io/storage-class: azure-disk
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  gcePersistentDisk:
+    pdName: my-disk
+    fsType: ext4
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sqldb-pvc
+  namespace: applicationnamespace
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 8Gi
+      storage: 10Gi
+  storageClassName: standard
+
+

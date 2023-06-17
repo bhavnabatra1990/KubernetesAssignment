@@ -7,7 +7,7 @@ spec:
   volumes:
     - name: mssqldb
       persistentVolumeClaim:
-        claimName: mssql-data-db
+        claimName: sqldb-pvc
   containers:
     - name: sql-server
       image: mcr.microsoft.com/mssql/server:2019-latest
