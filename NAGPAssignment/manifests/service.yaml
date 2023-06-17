@@ -4,6 +4,8 @@ metadata:
   name: employeeapp-service
   namespace: applicationnamespace
 spec:
+  type: ExternalName
+  externalName: employeeservice.com
   selector:
     app: EmployeeApp
   ports:
