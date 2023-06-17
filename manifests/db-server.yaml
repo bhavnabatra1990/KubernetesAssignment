@@ -4,10 +4,6 @@ metadata:
   name: sql-server-pod
   namespace: applicationnamespace
 spec:
-  volumes:
-    - name: sqldb-pv
-      persistentVolumeClaim:
-        claimName: mssql-data-db
   containers:
     - name: sql-server
       image: mcr.microsoft.com/mssql/server:2019-latest
@@ -36,6 +32,3 @@ spec:
               key: host
       ports:
         - containerPort: 1433
-      volumeMounts:
-        - name: sqldb-pv
-          mountPath: /var/opt/mssql
