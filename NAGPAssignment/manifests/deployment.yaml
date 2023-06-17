@@ -6,10 +6,6 @@ metadata:
   labels:
     app: EmployeeApp
 spec:
-  volumes:
-    - name: mssqldb
-      persistentVolumeClaim:
-        claimName: mssql-data
   replicas: 4
   strategy:
     rollingUpdate:
@@ -30,6 +26,10 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
+        volumes:
+        - name: mssqldb
+          persistentVolumeClaim:
+          claimName: mssql-data
         resources:
           limits:
             cpu: 500m
