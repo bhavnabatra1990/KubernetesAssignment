@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: employeeapp-service
   namespace: applicationnamespace
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
 spec:
   type: ExternalName
   externalName: employeeservice.com
