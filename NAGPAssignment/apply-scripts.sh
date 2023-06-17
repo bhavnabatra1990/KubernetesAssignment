@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# List the manifest files in the desired order
+# List the manifest files in the desired order1
 FILES=(
   "manifests/namespace.yaml"
   "manifests/secret.yaml"
