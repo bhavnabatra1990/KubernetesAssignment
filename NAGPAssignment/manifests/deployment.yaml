@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: employeeapp-deployment
-  namespace: applicationnamespace
+  namespace: applicationnamespace 
   labels:
-    app: EmployeeApp
+    app: EmployeeApp 
 spec:
   replicas: 4
   strategy:
@@ -16,16 +16,15 @@ spec:
       app: EmployeeApp
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
       labels:
         app: EmployeeApp
     spec:
       containers:
-      - name: employeeapp
-        image: docker.io/bhavnabatra1990/employee:1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-          protocol: TCP
+      - name: employeeapp 
+        image: docker.io/bhavnabatra1990/employee:1 # modify to correct image name and tag
+        imagePullPolicy: IfNotPresent
         resources:
           limits:
             cpu: 500m
@@ -33,28 +32,36 @@ spec:
           requests:
             cpu: 250m
             memory: 125Mi
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: mssql-data
+          mountPath: /var/opt/mssql
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
-        - name: SA_USER
+        - name: SA_PASSWORD
           valueFrom:
-            configMapKeyRef:
-             name: appsettings
-             key: username
-        - name: ACCEPT_EULA
-          value: "Y"
+            secretKeyRef:
+              name: mssql-secret
+              key: SA_PASSWORD 
         - name: SA_DATABASE
           valueFrom:
             configMapKeyRef:
               name: appsettings
               key: database
+        - name: SA_USER
+          valueFrom:
+            configMapKeyRef:
+              name: appsettings
+              key: username
         - name: SA_HOST
           valueFrom:
             configMapKeyRef:
               name: appsettings
               key: host
-        - name: SA_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mssql-secret
-              key: SA_PASSWORD
+      volumes:
+      - name: mssql-data
+        persistentVolumeClaim:
+          claimName: mssql-data  
