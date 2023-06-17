@@ -5,6 +5,8 @@ FILES=(
   "manifests/namespace.yaml"
   "manifests/configmap.yaml"
   "manifests/storageclass.yaml"
+  "manifests/pv.yaml"
+  "manifests/pvc.yaml"
   "manifests/db-server.yaml"
   "manifests/deployment.yaml"
   "manifests/service.yaml"

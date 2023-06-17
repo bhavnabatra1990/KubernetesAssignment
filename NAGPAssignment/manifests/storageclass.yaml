@@ -7,35 +7,3 @@ provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-standard
 
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: sqldb-pv
-  namespace: applicationnamespace
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: standard
-  gcePersistentDisk:
-    pdName: my-disk
-    fsType: ext4
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: sqldb-pvc
-  namespace: applicationnamespace
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: standard
-
-
