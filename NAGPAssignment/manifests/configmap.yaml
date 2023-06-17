@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   username: sa
   database: EmployeeDB
-  host: sql-server-pod
+  host: sql-server-pod.applicationnamespace.svc.cluster.local
 kind: ConfigMap
 metadata:
   name: appsettings
