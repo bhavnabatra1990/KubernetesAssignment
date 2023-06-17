@@ -26,10 +26,6 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
-        volumes:
-        - name: mssqldb
-          persistentVolumeClaim:
-          claimName: mssql-data
         resources:
           limits:
             cpu: 500m
@@ -63,7 +59,4 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mssql-secret
-              key: SA_PASSWORD 
-        volumeMounts:
-        - name: mssqldb
-        mountPath: /var/opt/mssql
+              key: SA_PASSWORD
