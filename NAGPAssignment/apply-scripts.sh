@@ -5,10 +5,10 @@ FILES=(
   "manifests/namespace.yaml"
   "manifests/configmap.yaml"
   "manifests/storageclass.yaml"
-  "manifests/networking.yaml"
-  "manifests/deployment.yaml"
   "manifests/db-server.yaml"
+  "manifests/deployment.yaml"
   "manifests/service.yaml"
+  "manifests/networking.yaml"
 )
 
 # Iterate over the files and apply them

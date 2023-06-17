@@ -10,11 +10,11 @@ namespace NAGPAssignment
         public static IServiceCollection RegisterService(this IServiceCollection services, IConfiguration configuration)
         {
             var host = configuration.GetConnectionString("SA_HOST");
-            var database = configuration.GetConnectionString("SA_DATABASE");
+            var port = configuration.GetConnectionString("SA_PORT");
             var userid = configuration.GetConnectionString("SA_USER");
             var password = configuration.GetConnectionString("SA_PASSWORD");
 
-            string connString = $"Server={host};Database={database};User Id=sa;Password={password};";
+            string connString = $"Server={host},{port};Database=EmployeeDb;Persist Security Info=True;User Id={userid};Password={password};";
             services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(connString));
             return services;
         }
