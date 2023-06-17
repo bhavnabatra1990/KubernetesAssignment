@@ -6,6 +6,10 @@ metadata:
   labels:
     app: EmployeeApp
 spec:
+  volumes:
+    - name: mssqldb
+      persistentVolumeClaim:
+        claimName: mssql-data
   replicas: 4
   strategy:
     rollingUpdate:
@@ -63,7 +67,3 @@ spec:
         volumeMounts:
         - name: mssqldb
         mountPath: /var/opt/mssql
-      volumes:
-      - name: mssqldb
-        persistentVolumeClaim:
-        claimName: mssql-data
