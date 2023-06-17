@@ -11,6 +11,6 @@ spec:
             path: /
             backend:
               service:
-                name: my-service
+                name: employeeapp-service
                 port:
                   number: 80
