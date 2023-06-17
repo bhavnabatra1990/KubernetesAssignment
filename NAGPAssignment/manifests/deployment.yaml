@@ -19,6 +19,8 @@ spec:
       labels:
         app: EmployeeApp
     spec:
+      type: ExternalName
+      externalName: employeeservice.com
       containers:
       - name: employeeapp
         image: docker.io/bhavnabatra1990/employee:1
