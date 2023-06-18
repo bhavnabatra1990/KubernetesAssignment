@@ -11,6 +11,7 @@ spec:
     - name: mysql-initdb
       configMap:
         name: mysql-initdb-config
+  subdomain: sql-server-pod
   containers:
     - name: sql-server
       image: mcr.microsoft.com/mssql/server:2019-latest
