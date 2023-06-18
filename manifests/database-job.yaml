@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: sql-script-container
-          image: mcr.microsoft.com/mssql-tools
+          image: mcr.microsoft.com/mssql/server:2019-latest
           command: ["/bin/bash", "-c"]
           args: ["sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/dbcheck2.sql"]
           env:
@@ -37,4 +37,3 @@ spec:
                   name: appsettings
                   key: port
       restartPolicy: Never
-  backoffLimit: 4
