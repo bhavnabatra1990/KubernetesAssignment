@@ -19,7 +19,7 @@ spec:
               apt-get update && apt-get install -y mssql-tools
 
               # Run SQL scripts
-              /opt/mssql-tools/bin/sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -Q "CREATE DATABASE IF NOT EXISTS EmployeeDb1"
+              /opt/mssql-tools/bin/sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -Q "CREATE DATABASE EmployeeDb"
           env:
             - name: DB_NAME
               value: "EmployeeDb"
