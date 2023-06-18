@@ -32,7 +32,7 @@ spec:
             runAsUser: 0
           args:
             - apt-get update && apt-get install -y mssql-tools
-            - sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/dbcheck2.sql
+            - /opt/mssql-tools/bin/sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -Q "CREATE DATABASE EmployeeDb"
           ports:
             - containerPort: 1433
               name: tcpsql
