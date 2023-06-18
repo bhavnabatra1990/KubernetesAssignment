@@ -9,8 +9,7 @@ spec:
   template:
     spec:
       containers:
-        - name: sql-script-container
-          image: docker.io/bhavnabatra1990/employee:1
+        - name: ssql-server-pod
           command: ["/bin/bash", "-c"]
           args: ["sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/sqldatabasescript.sql"]
           env:
