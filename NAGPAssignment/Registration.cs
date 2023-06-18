@@ -9,6 +9,7 @@ namespace NAGPAssignment
 
         public static IServiceCollection RegisterService(this IServiceCollection services, IConfiguration configuration)
         {
+            Console.WriteLine(configuration["ASPNETCORE_ENVIRONMENT"]);
             Console.WriteLine(configuration["ConnectionStrings__SA_HOST"]);
             var host = configuration.GetConnectionString("SA_HOST");
 

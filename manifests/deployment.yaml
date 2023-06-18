@@ -38,22 +38,22 @@ spec:
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
-        - name: SA_PASSWORD
+        - name: ConnectionStrings__SA_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mssql-secret
               key: SA_PASSWORD 
-        - name: SA_PORT
+        - name: ConnectionStrings__SA_PORT
           valueFrom:
             configMapKeyRef:
               name: appsettings
               key: port
-        - name: SA_USER
+        - name: ConnectionStrings__SA_USER
           valueFrom:
             configMapKeyRef:
               name: appsettings
               key: username
-        - name: SA_HOST
+        - name: ConnectionStrings__SA_HOST
           valueFrom:
             configMapKeyRef:
               name: appsettings
