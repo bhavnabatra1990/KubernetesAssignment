@@ -17,6 +17,13 @@ spec:
     spec:
       securityContext:
         fsGroup: 10001
+      volumes:
+        - name: sqldb-volume
+          persistentVolumeClaim:
+            claimName: mssql-db-pvc
+        - name: mysql-initdb
+          configMap:
+              name: mysql-initdb-config
       containers:
         - name: mssql
           image: mcr.microsoft.com/mssql/server:2019-latest
@@ -55,10 +62,4 @@ spec:
               mountPath: /var/opt/mssql
             - name: mysql-initdb
               mountPath: /docker-entrypoint-initdb.d
-          volumes:
-            - name: sqldb-volume
-              persistentVolumeClaim:
-                claimName: mssql-db-pvc
-            - name: mysql-initdb
-              configMap:
-                name: mysql-initdb-config
+          
