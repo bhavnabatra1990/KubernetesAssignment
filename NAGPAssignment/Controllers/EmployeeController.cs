@@ -39,5 +39,25 @@ namespace NAGPAssignment.Controllers
             }
 
         }
+
+        [HttpPost]
+        public async Task<ActionResult> AddEmployee(EmployeeResponse employeeResponse)
+        {
+            try
+            {
+                Employee employeeResponses = new Employee { Address = employeeResponse.Address, 
+                    FirstName = employeeResponse.FirstName, LastName = employeeResponse.LastName,
+                    PhoneNumber = employeeResponse.PhoneNumber, Salary = employeeResponse.Salary };
+                var data = await _employeeRepository.AddEmployee(employeeResponses);
+
+                return Ok(data.Id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while getting employees");
+                return StatusCode(500, ex.Message);
+            }
+
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace NAGPAssignment
             //"Server=tcp:sql-server-pod.applicationnamespace.svc.cluster.local,1433;Database=EmployeeDb;Persist Security Info=True;User Id=sa;Password=Welcome@0001234567;";
             //tcp:34.70.101.64,1433
             string connString = $"Server=tcp:mssql-db.applicationnamespace.svc.cluster.local,1433;Initial Catalog=EmployeeDb;User Id=sa;Password=Welcome@0001234567;Trusted_Connection=True;TrustServerCertificate=True;Integrated Security=false";
+            //string connString = $"Server=tcp:34.70.101.64,1433;Initial Catalog=EmployeeDb;User Id=sa;Password=Welcome@0001234567;Trusted_Connection=True;TrustServerCertificate=True;Integrated Security=false";
+
             //string connString = $"Server=tcp:{host},{port};Initial Catalog=EmployeeDb;Persist Security Info=False;User Id={userid};Password={password};TrustServerCertificate=False;Connection Timeout=30;";
 
             Console.WriteLine(connString);

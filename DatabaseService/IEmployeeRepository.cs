@@ -6,5 +6,7 @@ namespace DatabaseService
     {
         Task<IEnumerable<Employee>> GetEmployeesAsync();
 
+        Task<Employee> AddEmployee(Employee employee);
+
     }
 }
