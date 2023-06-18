@@ -30,9 +30,6 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
             runAsUser: 0
-          args:
-            - apt-get update && apt-get install -y mssql-tools
-            - sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/dbcheck2.sql
           ports:
             - containerPort: 1433
               name: tcpsql
