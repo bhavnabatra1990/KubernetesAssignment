@@ -14,10 +14,10 @@ spec:
       securityContext:
         allowPrivilegeEscalation: false
         runAsUser: 0
-      # command: ["/bin/bash", "-c"]
-      # args:
-      #   - RUN mkdir -p /var/lib/apt/lists/partial 
-      #   - sudo apt-get update && apt-get install -y mssql-tools
+      command: ["/bin/bash", "-c"]
+      args:
+        - apt-get update && apt-get install -y mssql-tools
+        - sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/sqldatabasescript.sql
       env:
         - name: ACCEPT_EULA
           value: "Y"
