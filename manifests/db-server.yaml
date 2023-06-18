@@ -13,6 +13,7 @@ spec:
       image: mcr.microsoft.com/mssql/server:2019-latest
       securityContext:
         privileged: true
+        fsGroup: 1234
       # command: ["/bin/bash", "-c"]
       # args:
       #   - RUN mkdir -p /var/lib/apt/lists/partial 
