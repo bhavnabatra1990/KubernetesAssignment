@@ -9,7 +9,7 @@ spec:
       image: mcr.microsoft.com/mssql/server:2019-latest
       securityContext:
         privileged: true
-      command: ["/bin/bash", "-c"]
+      # command: ["/bin/bash", "-c"]
       # args:
       #   - RUN mkdir -p /var/lib/apt/lists/partial 
       #   - sudo apt-get update && apt-get install -y mssql-tools
