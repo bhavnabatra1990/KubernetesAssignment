@@ -12,7 +12,7 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - RUN mkdir -p /var/lib/apt/lists/partial 
-        - apt-get update && apt-get install -y mssql-tools
+        - sudo apt-get update && apt-get install -y mssql-tools
       env:
         - name: ACCEPT_EULA
           value: "Y"
