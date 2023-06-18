@@ -7,6 +7,8 @@ spec:
   containers:
     - name: sql-server
       image: mcr.microsoft.com/mssql/server:2019-latest
+      securityContext:
+        privileged: true
       command: ["/bin/bash", "-c"]
       args:
         - apt-get update && apt-get install -y mssql-tools
