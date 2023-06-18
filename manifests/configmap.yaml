@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   username: "sa"
   port: "1433"
-  host: "sql-server-pod.applicationnamespace.svc.cluster.local"
+  host: "mssql-db.applicationnamespace.svc.cluster.local"
 kind: ConfigMap
 metadata:
   name: appsettings

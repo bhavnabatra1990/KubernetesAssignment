@@ -3,6 +3,7 @@
 # List the manifest files in the desired order1
 FILES=(
   "manifests/namespace.yaml"
+  "manifests/network-policy.yaml"
   "manifests/secret.yaml"
   "manifests/configmap.yaml"
   "manifests/db-configmap.yaml"
@@ -12,6 +13,7 @@ FILES=(
   "manifests/deployment.yaml"
   "manifests/service.yaml"
   "manifests/networking.yaml"
+  "manifests/database-job.yaml"
 )
 
 # Iterate over the files and apply them
