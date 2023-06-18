@@ -62,4 +62,19 @@ spec:
               mountPath: /var/opt/mssql
             - name: mysql-initdb
               mountPath: /docker-entrypoint-initdb.d
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-sales-0
+  namespace: sales
+spec:
+  type: LoadBalancer
+  selector:
+    statefulset.kubernetes.io/pod-name: mssql-0
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+      name: tcpsql
           
