@@ -8,9 +8,6 @@ spec:
     - name: sqldb-volume
       persistentVolumeClaim:
         claimName: mssql-db-pvc
-      hostPath:
-        path: /var/opt/mssql
-        type: Directory
   containers:
     - name: sql-server
       image: mcr.microsoft.com/mssql/server:2019-latest
