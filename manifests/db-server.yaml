@@ -77,12 +77,12 @@ metadata:
   name: mssql-db
   namespace: applicationnamespace
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     statefulset.kubernetes.io/pod-name: mssql-0
   ports:
     - protocol: TCP
       port: 1433
       targetPort: 1433
-      name: tcpsql
+      # name: tcpsql
           
