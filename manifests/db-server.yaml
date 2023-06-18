@@ -1,9 +1,11 @@
 apiVersion: v1
-kind: Pod
+kind: StatefulSet
 metadata:
   name: sql-server-pod
   namespace: applicationnamespace
 spec:
+  serviceName: "mssql"
+  replicas: 1
   volumes:
     - name: sqldb-volume
       persistentVolumeClaim:
@@ -25,6 +27,11 @@ spec:
       env:
         - name: ACCEPT_EULA
           value: "Y"
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql-secret
+              key: SA_PASSWORD 
         - name: SA_PASSWORD
           valueFrom:
             secretKeyRef:
