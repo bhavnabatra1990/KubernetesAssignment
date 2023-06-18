@@ -36,15 +36,5 @@ spec:
                 configMapKeyRef:
                   name: appsettings
                   key: port
-          volumeMounts:
-            - name: script-volume
-              mountPath: /scripts
       restartPolicy: Never
-      volumes:
-        - name: script-volume
-          configMap:
-            name: script-configmap
-            items:
-              - key: script.sql
-                path: script.sql
   backoffLimit: 4
