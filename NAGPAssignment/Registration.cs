@@ -15,6 +15,8 @@ namespace NAGPAssignment
             var password = configuration.GetConnectionString("SA_PASSWORD");
 
             string connString = $"Server={host},{port};Database=EmployeeDb;Persist Security Info=True;User Id={userid};Password={password};";
+            
+            Console.WriteLine(connString);
             services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(connString));
             return services;
         }
