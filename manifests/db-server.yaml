@@ -6,13 +6,6 @@ metadata:
 spec:
   serviceName: "mssql"
   replicas: 1
-  volumes:
-    - name: sqldb-volume
-      persistentVolumeClaim:
-        claimName: mssql-db-pvc
-    - name: mysql-initdb
-      configMap:
-        name: mysql-initdb-config
   podManagementPolicy: Parallel
   selector:
     matchLabels:
@@ -62,3 +55,10 @@ spec:
               mountPath: /var/opt/mssql
             - name: mysql-initdb
               mountPath: /docker-entrypoint-initdb.d
+          volumes:
+            - name: sqldb-volume
+              persistentVolumeClaim:
+                claimName: mssql-db-pvc
+            - name: mysql-initdb
+              configMap:
+                name: mysql-initdb-config
