@@ -66,8 +66,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mssql-sales-0
-  namespace: sales
+  name: mssql-db
+  namespace: applicationnamespace
 spec:
   type: LoadBalancer
   selector:
