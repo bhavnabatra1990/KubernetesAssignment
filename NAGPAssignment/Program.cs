@@ -2,10 +2,8 @@ using DatabaseService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NAGPAssignment;
-
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
-configuration.AddEnvironmentVariables();
+builder.Configuration.AddEnvironmentVariables();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -20,7 +18,7 @@ builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
     .AllowCredentials()
     .WithOrigins("http://localhost:4200");
 }));
-builder.Services.RegisterService(configuration);
+builder.Services.RegisterService(builder.Configuration);
 //builder.Services.AddDbContext<EmployeeDbContext>(options => 
 //options.UseSqlServer(configuration.GetConnectionString("EmployeeDbConnection")));
 
