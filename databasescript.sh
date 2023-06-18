@@ -21,6 +21,15 @@ INSERT INTO Employee (FirstName, LastName, Age, Address, Salary, PhoneNumber) VA
 INSERT INTO Employee (FirstName, LastName, Age, Address, Salary, PhoneNumber) VALUES ('John8', 'Doe8', 25, '123 Main St8', 50000, '555-555-5555')
 "
 
-sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $SA_DATABASE -Q "$SQL_SCRIPT"
+SQL_SCRIPT2="USE EmployeeDb
+
+INSERT INTO Employee (FirstName, LastName, Age, Address, Salary, PhoneNumber) VALUES ('JohnTEST', 'Doe1', 25, '123 Main St1', 50000, '555-555-5555')
+
+"
+
+kubectl exec -it mssql-0 -- /opt/mssql-tools/bin/sqlcmd -U $SA_USER -P $SA_PASSWORD -d $SA_DATABASE -Q "$SQL_SCRIPT2"
+
+
+# sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $SA_DATABASE -Q "$SQL_SCRIPT"
 
 
