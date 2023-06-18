@@ -8,6 +8,9 @@ spec:
     - name: sqldb-volume
       persistentVolumeClaim:
         claimName: mssql-db-pvc
+    - name: mysql-initdb
+      configMap:
+        name: mysql-initdb-config
   containers:
     - name: sql-server
       image: mcr.microsoft.com/mssql/server:2019-latest
@@ -46,3 +49,5 @@ spec:
       volumeMounts:
         - name: sqldb-volume
           mountPath: /var/opt/mssql
+        - name: mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
