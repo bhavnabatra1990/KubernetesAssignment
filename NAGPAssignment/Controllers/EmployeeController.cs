@@ -35,7 +35,7 @@ namespace NAGPAssignment.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error while getting employees");
-                return StatusCode(500, ex);
+                return StatusCode(500, ex.Message);
             }
 
         }
