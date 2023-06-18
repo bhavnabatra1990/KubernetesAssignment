@@ -13,11 +13,6 @@ spec:
       image: mcr.microsoft.com/mssql/server:2019-latest
       securityContext:
         privileged: true
-      command:
-        - chown
-        - -R
-        - 472:472
-        - /var/opt/mssql
       # command: ["/bin/bash", "-c"]
       # args:
       #   - RUN mkdir -p /var/lib/apt/lists/partial 
