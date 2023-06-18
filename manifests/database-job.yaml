@@ -9,7 +9,7 @@ spec:
   template:
     spec:
       containers:
-        - name: ssql-server-pod
+        - name: sql-server-pod
           command: ["/bin/bash", "-c"]
           args: ["sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/sqldatabasescript.sql"]
           env:
