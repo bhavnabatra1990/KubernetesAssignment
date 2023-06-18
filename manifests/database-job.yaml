@@ -11,11 +11,8 @@ spec:
       containers:
         - name: sql-script-container
           image: mcr.microsoft.com/mssql/server:2019-latest
-          command: ["/bin/bash", "-c"]
-          args:
-            - |
-              apt-get update && apt-get install -y mssql-tools
-              sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/dbcheck2.sql
+          command: ["/bin/bash", "-c","apt-get update && apt-get install -y mssql-tools"]
+          args: ["sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/dbcheck2.sql"]
           env:
             - name: DB_NAME
               value: "EmployeeDb"
