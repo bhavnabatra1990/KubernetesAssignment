@@ -14,8 +14,10 @@ namespace NAGPAssignment
             var userid = configuration.GetConnectionString("SA_USER");
             var password = configuration.GetConnectionString("SA_PASSWORD");
 
-            string connString = $"Server={host},{port};Database=EmployeeDb;Persist Security Info=True;User Id={userid};Password={password};";
-            
+            string connString = "Server=sql-server-pod.applicationnamespace.svc.cluster.local,1433;Database=EmployeeDb;Persist Security Info=True;User Id=sa;Password=Welcome@0001234567;";
+
+                //$"Server={host},{port};Database=EmployeeDb;Persist Security Info=True;User Id={userid};Password={password};";
+
             Console.WriteLine(connString);
             services.AddDbContext<EmployeeDbContext>(options => options.UseSqlServer(connString));
             return services;
