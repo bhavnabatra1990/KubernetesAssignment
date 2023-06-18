@@ -7,6 +7,9 @@ spec:
   containers:
     - name: sql-server
       image: mcr.microsoft.com/mssql/server:2019-latest
+      command: ["/bin/bash", "-c"]
+      args:
+        - apt-get update && apt-get install -y mssql-tools
       env:
         - name: ACCEPT_EULA
           value: "Y"

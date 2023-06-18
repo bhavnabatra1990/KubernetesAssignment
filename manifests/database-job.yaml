@@ -1,42 +1,50 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: database-scripts-job
+  name: sql-script-job
+  namespace: applicationnamespace
   labels:
     app: database-scripts
 spec:
   template:
-    metadata:
-      name: database-scripts-pod
-      namespace: applicationnamespace
-      labels:
-        app: database-scripts
     spec:
       containers:
-        - name: database-scripts-container
+        - name: sql-script-container
           image: docker.io/bhavnabatra1990/employee:1
-          command: ["./databasescript.sh"]
+          command: ["/bin/bash", "-c"]
+          args: ["sqlcmd -S $SA_HOST -U $SA_USER -P $SA_PASSWORD -d $DB_NAME -i databaseservice/sqldatabasescript.sql"]
           env:
-          - name: SA_HOST
-            valueFrom:
-              configMapKeyRef:
-              name: appsettings
-              key: host
-          - name: SA_USER
-            valueFrom:
-              configMapKeyRef:
-              name: appsettings
-              key: username
-          - name: SA_PASSWORD
-            valueFrom:
-              secretKeyRef:
-              name: mssql-secret
-              key: SA_PASSWORD
-          - name: SA_PORT
-            valueFrom:
-              configMapKeyRef:
-              name: appsettings
-              key: port
+            - name: DB_NAME
+              value: "EmployeeDb"
+            - name: SA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mssql-secret
+                  key: SA_PASSWORD
+            - name: SA_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: appsettings
+                  key: host
+            - name: SA_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: appsettings
+                  key: username
+            - name: SA_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: appsettings
+                  key: port
+          volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
       restartPolicy: Never
-
-
+      volumes:
+        - name: script-volume
+          configMap:
+            name: script-configmap
+            items:
+              - key: script.sql
+                path: script.sql
+  backoffLimit: 4
