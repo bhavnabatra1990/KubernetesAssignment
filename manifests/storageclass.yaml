@@ -1,11 +1,11 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: azure-disk
+  name: gcp-storage-class
   namespace: applicationnamespace
-provisioner: kubernetes.io/azure-disk
-parameters:
-  storageaccounttype: Standard_LRS
-  kind: Managed
-  type: azure-disk
+provisioner: kubernetes.io/gce-pd
+# parameters:
+#   storageaccounttype: Standard_LRS
+#   kind: Managed
+#   type: azure-disk
 

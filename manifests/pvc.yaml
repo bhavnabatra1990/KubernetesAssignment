@@ -1,11 +1,10 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-data-db
+  name: mssql-db-pvc
   namespace: applicationnamespace
-  annotations:
-    volume.beta.kubernetes.io/storage-class: azure-disk
 spec:
+  storageClassName: gcp-storage-class
   accessModes:
   - ReadWriteOnce
   resources:
