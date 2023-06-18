@@ -9,7 +9,9 @@ namespace NAGPAssignment
 
         public static IServiceCollection RegisterService(this IServiceCollection services, IConfiguration configuration)
         {
+            Console.WriteLine(configuration["ConnectionStrings__SA_HOST"]);
             var host = configuration.GetConnectionString("SA_HOST");
+
             var port = configuration.GetConnectionString("SA_PORT");
             var userid = configuration.GetConnectionString("SA_USER");
             var password = configuration.GetConnectionString("SA_PASSWORD");
