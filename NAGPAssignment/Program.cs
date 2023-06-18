@@ -1,9 +1,7 @@
 using DatabaseService;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using NAGPAssignment;
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddJsonFile("appsettings.json", false, true).AddEnvironmentVariables();
 // Add services to the container.
 
 builder.Services.AddControllers();
