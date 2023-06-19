@@ -1,5 +1,10 @@
 # KubernetesAssignment
 
+Link of Code Repo - https://github.com/bhavnabatra1990/KubernetesAssignment.git
+Docker Image URL - docker pull bhavnabatra1990/employee:1
+URL of Service API Tier - http://34.171.29.209/swagger/index.html
+Video Link - https://nagarro-my.sharepoint.com/:v:/p/bhavna_batra/ET1cGUBkszpKiInhq1nsMeIBbpP6B5o1ZjZFQfFBtv4TiQ?e=VzIkRL
+
 # .NET Core Web API NAGPAssignment Project
 
 This is a template for building / deploying a .NET Core Employee microservice on Kubernetes
@@ -36,7 +41,7 @@ $ cd KubernetesAssignment
 
 To setup the docker image if need to
 
-Docker image URL - `docker pull bhavnabatra1990/employee:tagname`
+Docker image URL - `docker pull bhavnabatra1990/employee:1`
 
 ## IF build image and push
 
@@ -59,7 +64,6 @@ Preparing Config Map for .NET Core Web API microservice and use database sql ser
 
 ```sh
 $ chmod +x apply-scripts.sh
-$ chmod +x databasescript.sh
 ```
 
 To deploy the microservice on Kubernetes, run following command:
@@ -67,8 +71,24 @@ To deploy the microservice on Kubernetes, run following command:
 ```sh
 $ ./apply-scripts.sh
 ```
+or
+```
+  cd manifests
+  kubectl create -f namespace.yaml
+  kubectl create -f network-policy.yaml
+  kubectl create -f secret.yaml
+  kubectl create -f configmap.yaml
+  kubectl create -f db-configmap.yaml
+  kubectl create -f storageclass.yaml
+  kubectl create -f pvc.yaml
+  kubectl create -f db-server.yaml
+  kubectl create -f deployment.yaml
+  kubectl create -f service.yaml
+  kubectl create -f networking.yaml
+  kubectl create -f database-job.yaml
+```
 
-This will deploy it on Kubernetes with the centralized config.
+This will deploy Employee service and Database tier on Kubernetes with the centralized config.
 
 ## Assignment Topic
 `Database Tier` - used db-server.yaml
